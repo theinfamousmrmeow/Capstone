@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Books from '../components/Books.vue';
 import Ping from '../components/Ping.vue';
 
 Vue.use(VueRouter);
@@ -15,6 +16,11 @@ const routes = [
     path: '/ping',
     name: 'Ping',
     component: Ping,
+  },
+  {
+    path: '/books',
+    name: 'Books',
+    component: Books,
   },
   {
     path: '/about',

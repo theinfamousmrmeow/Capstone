@@ -11,13 +11,39 @@ app.config.from_object(__name__)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
+BOOKS = [
+    {
+        'title': 'On the Road',
+        'author': 'Jack Kerouac',
+        'read': True
+    },
+    {
+        'title': 'Harry Potter and the Philosopher\'s Stone',
+        'author': 'J. K. Rowling',
+        'read': False
+    },
+    {
+        'title': 'Green Eggs and Ham',
+        'author': 'Dr. Seuss',
+        'read': True
+    }
+]
+
+
+@app.route('/books', methods=['GET'])
+def all_books():
+    return jsonify({
+        'status': 'success',
+        'books': BOOKS
+    })
+
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'DONT GO TO BED!'
+    return 'You shouldnt see this!!'
 
 
-# sanity check route
+# Debug route
 @app.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify('pong from App.py!')
