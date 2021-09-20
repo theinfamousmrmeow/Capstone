@@ -1,7 +1,7 @@
 /// @description 
 //https://grafxkid.itch.io/
 
-initGame();
+
 event_inherited();
 
 
@@ -11,3 +11,7 @@ event_inherited();
 // You can write your code in this editor
 //
 coins=0;
+time=0;
+
+last_current_time=-1;
+depth = -9999;

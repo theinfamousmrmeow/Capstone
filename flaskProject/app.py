@@ -1,5 +1,6 @@
 import mysql.connector
 from flask import Flask, jsonify, request
+from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from mysql import connector
 
@@ -8,6 +9,23 @@ DEBUG = True
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+api = Api(app)
+
+
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
+
+api.add_resource(HelloWorld, '/api')
+
+class SessionAPI(Resource):
+    def get(self):
+        mycursor.execute('SELECT * FROM sessions')
+        sessions = mycursor.fetchall()
+
+        return jsonify(sessions)
+
+api.add_resource(SessionAPI, '/sessions')
 
 
 # enable CORS
@@ -87,6 +105,8 @@ def hello_world():  # put application's code here
 def ping_pong():
     return jsonify('pong from App.py!')
 
+
+
 @app.route('/capstone', methods=['GET',  'POST'])
 def getDegree():
     post_data = request.get_json()
@@ -115,8 +135,11 @@ def getDegree():
 
     mycursor = mydb.cursor()
 
-    mycursor.execute('SELECT * FROM sessions')
 
+
+    mycursor.execute('SELECT * FROM brains')
+
+    #eturn "POTATO RETURN"
     return jsonify(mycursor.fetchall())
 
 if __name__ == '__main__':

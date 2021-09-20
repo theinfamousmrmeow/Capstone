@@ -5,7 +5,8 @@ event_inherited();
 //First we determine the "brain"
 brain = "1235115412" //10 Genes, each gene controls the rate at which each enemy type is spawned?
 currentChromosone = 0;
-gene = new Gene();
+gene = global.gene;
+
 //
 tilemap = layer_tilemap_get_id("tiles_barrier");
 monsters=ds_list_create();
@@ -17,6 +18,7 @@ screen_height=camera_get_view_height(cam);
 
 var _challengeRating =100;
 points = _challengeRating;
+cheapestMonster = _challengeRating-1;
 //_challengeRating *= (room_height/screen_height)//Number of "screens" the room is
 //Random Monsters
 //while (_challengeRating>0){
@@ -53,4 +55,6 @@ ds_list_add(monsters,obj_blobman);
 
 ds_list_destroy(monsters);
 
+
 alarm[0]=200;
+

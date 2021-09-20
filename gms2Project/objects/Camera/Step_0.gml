@@ -21,6 +21,8 @@ else {
 y=clamp(y,0+height*(2/3),room_height-height*(1/2));
 x=clamp(x,0+width/2,room_width-width/2);
 
+if (y<0+height*(2/3)){y=0+height*(2/3);}
+
 //camera_set_view_pos(cam,x+(random(jitter*2)-jitter)-width/2,y-height*(1/2)+(random(jitter*2)-jitter));
 camera_set_view_pos(cam,x+(random(jitter*2)-jitter)-width/2,y-height*(2/3)+(random(jitter*2)-jitter));
 

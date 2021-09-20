@@ -4,7 +4,7 @@ event_inherited();
 if (jitter>0){jitter--;}
 
 x=clamp(x,0+abs(sprite_width)/2,room_width-(abs(sprite_width)/2));
-y=clamp(y,0+sprite_height/2,room_height-sprite_height/2);
+y=clamp(y,0-sprite_height/2,room_height+sprite_height*2);
 
 if (hspeed<0){facing=-1} else if(hspeed>0) {facing=1;}
 if (speed>0){image_speed=0.25;}else{image_speed=0;}

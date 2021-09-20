@@ -51,6 +51,10 @@
 
 #endregion 
 
+#region TIME CONSTANTS
+#macro SECONDS_TO_MILLISECONDS 1000
+#endregion
+
 #region sprites
 
 ///@desc Stops animation where it is.

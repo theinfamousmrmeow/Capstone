@@ -6,6 +6,7 @@ event_inherited();
 if (faction!=-1 && faction!=other.faction && other.faction!=E_FACTIONS.NONE){
 	other.hp-=1;
 	other.jitter=8;
+	audio_play_sound(capstone_enemyDamage,2,0);
 	spawnParticleAbove(x,y,global.p_impact,1);
 	if (!agentHasTrait(other,E_TRAITS.UNFLINCHING)){
 		other.state = E_STATES.HURT;
