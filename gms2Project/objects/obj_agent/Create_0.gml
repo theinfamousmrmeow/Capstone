@@ -11,7 +11,7 @@ state = E_STATES.IDLE;
 jitter=0;
 blinking=0;
 
-maxSpeed=0.2;
+maxSpeed=0.25;
 
 direction=270;
 friction=0.1;

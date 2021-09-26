@@ -47,6 +47,7 @@
 
 #region Logging Macros
 #macro log show_debug_message
+#macro debuglog show_debug_message
 #macro show show_message
 
 #endregion 
@@ -116,6 +117,18 @@ function draw_stacked_sprite_ext() {
 
 }
 
+
+#endregion
+
+#region masks
+
+function bbox_width(){
+	return abs(bbox_right - bbox_left)	
+}
+
+function bbox_height(){
+	return abs(bbox_bottom - bbox_top)	
+}
 
 #endregion
 
@@ -194,6 +207,32 @@ function weightedMean(){
 function roundToNearest(){
 	return round(argument0 / argument1) * argument1;
 }
+
+
+function angle_get_xcomponent(_angle){
+	var _x = lengthdir_x(1,_angle);
+	return (sign(_x))
+}
+
+function angle_get_ycomponent(_angle){
+	var _y = lengthdir_y(1,_angle);
+	return (sign(_y))
+}
+
+function angle_reflect_x(_angle){
+	var _x = angle_get_xcomponent(_angle);
+	var _y = angle_get_ycomponent(_angle)
+	_x *= -1;
+	return point_direction(0,0,_x,_y)
+}
+
+function angle_reflect_y(_angle){
+	var _x = angle_get_xcomponent(_angle);
+	var _y = angle_get_ycomponent(_angle)
+	_y *= -1;
+	return point_direction(0,0,_x,_y)
+}
+
 
 function angle_between(_angle,_angle1,_angle2){
 		

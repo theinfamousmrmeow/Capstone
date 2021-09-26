@@ -26,6 +26,7 @@ enum E_STATES{
 function initGame(){
 	initParticles();
 	initGameState();
+	initAPI();
 	global.gene = new Gene();
 	global.difficulty = 1;
 	global.act = 1;

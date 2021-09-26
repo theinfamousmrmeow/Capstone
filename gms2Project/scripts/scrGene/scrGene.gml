@@ -8,27 +8,46 @@ function Population() constructor {
 		
 }
 
-#macro CHROMOSONE = { }
+#macro CHROMOSONE_DELIMITER ","
+
+#macro GENE_DELIMITER ";"
+
+#macro CHROMOSONE { }
+
+#macro ENEMY_CODES ["0","1","2","3","4"]
+
+#macro ENEMY_OBJECTS [obj_blobman,obj_octus,obj_ironsuit,obj_flappor,obj_impor]
+
+function getMonsterObject(_charCode){
+	var __index = findInArray(ENEMY_CODES,_charCode)
+	return array_get(ENEMY_OBJECTS,__index);
+}
+
+function getMonsterCode(_objectIndex){
+	var __index = findInArray(ENEMY_OBJECTS,_objectIndex)
+	return array_get(ENEMY_OBJECTS,__index);
+}
+
 
 function chromosoneFromString(_string){
 	
-	var __strs = splitSTring(_string,",");
+	var __strings = splitString(_string,CHROMOSONE_DELIMITER);
+	var __type = __strings[0];
+	var __placement = real(__strings[1]);
+	var __timer = real(__strings[2]);
 	
-	
-	
-	var __chr = new Chromosone()
+	var __chr = new Chromosone(__type,__placement,__timer);
 	
 	return __chr;
 }
 
-function Chromosone(_typeString=choose("0","1","2"),_placement=random(1),_timer=random(100)) constructor
+function Chromosone(_typeString=choose("0","1","2","3","4"),_placement=random(1),_timer=random(100)) constructor
 {
 
 	var __map = getMonsterMap();
-	typeString = ds_map_find_value(__map,type);
-	ds_map_add()
-	ds_map_destroy(__map);
-	type = _type; //Object Index to spawn;
+	typeString = _typeString;
+	
+	type = getMonsterObject(_typeString);
 		
 
 	placement = _placement;//0-100;
@@ -42,7 +61,7 @@ function Chromosone(_typeString=choose("0","1","2"),_placement=random(1),_timer=
 	}
 	
 	function fromString(_string){
-		var __strings = splitString(_string,",")
+		var __strings = splitString(_string,CHROMOSONE_DELIMITER)
 		//0
 		type = __strings[0];
 		placement = real(__strings[1]);
@@ -53,18 +72,26 @@ function Chromosone(_typeString=choose("0","1","2"),_placement=random(1),_timer=
 
 function Gene() constructor {
 	//Gene consists of Chromosones in a list
-	fitness = undefined;//Unknown until tried;
+	fitness = -1;//Unknown until tried;
 	chromosones = ds_list_create();
-	repeat(32){
+	repeat(16){
 		ds_list_add(chromosones,new Chromosone());
 	}
 	
 	function toString(){
 		var __str= "";
 		for (var __i=0;__i<ds_list_size(chromosones);__i++){
-			__str = __str + chromosones[| __i].toString() + "\n";
+			__str = __str + chromosones[| __i].toString() + GENE_DELIMITER;
 		}
 		return __str;
+	}
+	
+	function fromString(_str){
+		var __chromosones = splitString(_str,GENE_DELIMITER);
+		ds_list_clear(chromosones);
+		for (var __i=0;__i<ds_list_size(__chromosones);__i++){
+			ds_list_add(chromosones,chromosoneFromString(__chromosones[__i]));
+		}
 	}
 	
 	function breedWith(_otherGene){
