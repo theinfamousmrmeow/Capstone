@@ -52,6 +52,19 @@ function addTrait(_trait){
 	}
 }
 
+function removeTrait(_trait){
+	if (traits=-1){
+		//Do nothing;
+		//traits=array_create(1,_trait);	
+	}
+	else {
+		var __i = findInArray(traits,_trait);
+		if (__i!=-1){
+			array_delete(traits,__i,1);
+		}
+	}
+}
+
 function initTraits(){
 	traits=-1;	
 }

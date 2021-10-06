@@ -27,7 +27,8 @@ function initGame(){
 	initParticles();
 	initGameState();
 	initAPI();
-	global.gene = new Gene();
+	global.population = new Population();
+
 	global.difficulty = 1;
 	global.act = 1;
 	global.stage = 1;

@@ -23,11 +23,14 @@ switch(state){
 
 
 if (canShoot && state != E_STATES.HURT){
-	canShoot=false;
-	alarm[1]=rof;
-	var __i = instance_create_depth(x,y,-9999,obj_enemy_bullet);
-	__i.faction=faction;
-	__i.direction=point_direction(x,y,obj_player.x,obj_player.y);
-	__i.speed=1;
-	__i.image_blend=c_red;
+	var __enemy = instance_nearest(x,y,obj_player)
+	if (__enemy != noone){
+		canShoot=false;
+		alarm[1]=rof;
+		var __i = instance_create_depth(x,y,-9999,obj_enemy_bullet);
+		__i.faction=faction;
+		__i.direction=point_direction(x,y,obj_player.x,obj_player.y);
+		__i.speed=1;
+		__i.image_blend=c_red;
+	}
 }

@@ -5,7 +5,7 @@ event_inherited();
 //First we determine the "brain"
 brain = "1235115412" //10 Genes, each gene controls the rate at which each enemy type is spawned?
 currentChromosone = 0;
-gene = global.gene;
+gene = global.population.gene;
 
 //
 tilemap = layer_tilemap_get_id("tiles_barrier");

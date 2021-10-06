@@ -3,7 +3,7 @@ event_inherited();
 
 /// @description Insert description here
 // You can write your code in this editor
-if (faction!=-1 && faction!=other.faction && other.faction!=E_FACTIONS.NONE){
+if (faction!=-1 && faction!=other.faction && other.faction!=E_FACTIONS.NONE && !agentHasTrait(other,E_TRAITS.INCORPOREAL)){
 	other.hp-=1;
 	other.jitter=8;
 	audio_play_sound(capstone_enemyDamage,2,0);

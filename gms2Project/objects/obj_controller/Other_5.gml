@@ -12,5 +12,6 @@ if (getGameState() != E_GAMESTATE.ROUND_PLAYING){
 	ds_map_add(__payload,"startingFitness",startingFitness);
 	ds_map_add(__payload,"endingFitness",endingFitness);
 	global.API.sessions.create(__payload);
+	global.population.nextGene();
 	ds_map_destroy(__payload)
 }
