@@ -1,7 +1,7 @@
 /// @description 
 event_inherited();
 
-initZ(0,bbox_bottom-bbox_top)
+initZ(0,(bbox_bottom-bbox_top)/2)
 
 faction = E_FACTIONS.MONSTER;
 hp = 3;

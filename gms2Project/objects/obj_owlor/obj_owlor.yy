@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_impor_fall",
-    "path": "sprites/spr_impor_fall/spr_impor_fall.yy",
+    "name": "spr_owlor_idle",
+    "path": "sprites/spr_owlor_idle/spr_owlor_idle.yy",
   },
   "solid": false,
   "visible": true,
@@ -26,7 +26,6 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":10,"eventType":2,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -35,7 +34,7 @@
     "path": "folders/Objects/Monsters.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_impor",
+  "name": "obj_owlor",
   "tags": [],
   "resourceType": "GMObject",
 }

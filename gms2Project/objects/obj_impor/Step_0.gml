@@ -1,6 +1,6 @@
 /// @description 
 event_inherited();
-
+friction=0.1;
 switch(state){
 	case E_STATES.IDLE:
 		if (y<room_height/2) {
@@ -11,6 +11,16 @@ switch(state){
 		case E_STATES.HURT: sprite_change(spr_impor_hurt);
 	break;
 	//case E_STATES.DEFEND: sprite_change(spr_spikor_defend); break;
+	
+	case E_STATES.JUMP:
+		friction=0;
+		if (zspeed>0) sprite_change(spr_impor_jump,0);
+		else sprite_change(spr_impor_fall,0);
+		if (z==0){
+			state = E_STATES.IDLE;	
+		}
+	break;
+	
 	case E_STATES.WALK:
 		sprite_change(spr_impor_run,0.25);
 		direction=270;

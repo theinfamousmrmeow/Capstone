@@ -19,7 +19,9 @@ else {
 	xx=0; yy=0;	
 }
 
-speed = clamp(speed,0,maxSpeed);
+if (state!=E_STATES.JUMP){
+	speed = clamp(speed,0,maxSpeed);
+}
 
 if (blinking>0 && jitter=0){
 	blinking--;

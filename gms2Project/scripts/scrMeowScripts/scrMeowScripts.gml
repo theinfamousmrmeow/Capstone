@@ -504,6 +504,29 @@ function getSetting(argument0, argument1, argument2) {
 
 #region ARRAYS
 
+///@desc returns a clone of the given array;
+function array_clone(_src){
+	var __len = array_length(_src);
+	var __newArray = array_create(__len,0);
+	array_copy(__newArray, 0, _src, 0, __len);
+	return __newArray;
+}
+
+///@desc returns a new array that is the merger of two given arrays
+function array_merge(_a,_b){
+	var __newArray = array_clone(_a);
+	for (var __i=0;__i<array_length(_b);__i++){
+		array_push(_a,_b[__i])
+	}
+	return __newArray;
+}
+
+///@desc returns a random value in this array
+function array_get_random(_array){
+	var __i = max(0,irandom(array_length(_array)-1));
+	return _array[__i];	
+}
+
 function array_create_2d(_w,_h,_value=0){
 
 	var __array

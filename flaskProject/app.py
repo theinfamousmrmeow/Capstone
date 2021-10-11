@@ -114,53 +114,14 @@ class BrainAPI(Resource):
         mydb.commit()
         return f"performed DELETE on {brain}"
 
+    def update(self):
+        req = request.get_json()
+        brain = req.get("brain")
+        
+
+        return f"performed DELETE on {brain}"
+
 api.add_resource(BrainAPI, '/brains')
-
-
-
-
-# mycursor.execute('SELECT * FROM brains')
-#
-# GENES = mycursor.fetchall()
-#
-# print(GENES)
-#
-# for gene in GENES:
-#         print(gene)
-
-
-
-
-# @app.route('/')
-# def hello_world():  # put application's code here
-#     return 'You shouldnt see this!!'
-
-
-# # Debug route
-# @app.route('/ping', methods=['GET'])
-# def ping_pong():
-#     return jsonify('pong from App.py!')
-
-
-
-# @app.route('/capstone', methods=['GET',  'POST'])
-# def getDegree():
-#     print("getDegree called")
-#     post_data = request.get_json()
-#     if request.method == 'POST':
-#         print(request.json)
-#
-#     # mydb = mysql.connector.connect(
-#     #     host='localhost',
-#     #     user='admin',
-#     #     password='einherjar',
-#     #     port=3306,
-#     #     database='gamedata'
-#     # )
-#
-#     mycursor = mydb.cursor()
-#     mycursor.execute('SELECT * FROM brains')
-#     return jsonify(mycursor.fetchall())
 
 if __name__ == '__main__':
     app.run()

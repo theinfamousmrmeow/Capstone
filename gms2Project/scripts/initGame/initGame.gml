@@ -17,6 +17,7 @@ enum E_STATES{
 	NONE,
 	IDLE,
 	WALK,
+	JUMP,
 	DEFEND,
 	ATTACK,
 	HURT

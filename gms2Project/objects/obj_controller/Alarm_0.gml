@@ -19,6 +19,8 @@ for (var i=currentChromosone;i<__totalChromosones;i++){
 		//Spawn critter;
 		critter.x = room_width * __chromosone.placement;
 		critter.y = 0;
+		critter.xstart = critter.x;
+		critter.ystart = critter.y;
 		points -= critter.value;
 		//Get Delay
 		alarm[0]= 5+__chromosone.timer;
