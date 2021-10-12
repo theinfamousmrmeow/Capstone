@@ -11,7 +11,17 @@ if (getGameState() != E_GAMESTATE.ROUND_PLAYING){
 	ds_map_add(__payload,"time",obj_hud.time);
 	ds_map_add(__payload,"startingFitness",startingFitness);
 	ds_map_add(__payload,"endingFitness",endingFitness);
-	global.API.sessions.create(__payload);
+	//global.API.sessions.create(__payload);
+	
+	//Send a create to the Brains table, ignored if already in table
+	ds_map_clear(__payload);
+	ds_map_add(__payload,"brain",gene.toString());
+	ds_map_add(__payload,"fitness",endingFitness);
+	global.API.brains.create(__payload);
+	
+	//Prepare for next session.
 	global.population.nextGene();
+	
+
 	ds_map_destroy(__payload)
 }

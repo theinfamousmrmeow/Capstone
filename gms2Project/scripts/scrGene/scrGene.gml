@@ -34,7 +34,7 @@ function getMonsterCode(_objectIndex){
 
 
 function chromosoneFromString(_string){
-	debuglog("CHROMSPLIT:"+_string);
+	//debuglog("CHROMSPLIT:"+_string);
 	var __strings = splitString(_string,CHROMOSONE_DELIMITER);
 	var __type = __strings[0];
 	var __placement = real(__strings[1]);
@@ -222,18 +222,18 @@ function Gene(_str=-1) constructor {
 	
 	function fromString(_str){
 		var __chromosones = splitString(_str,GENE_DELIMITER);
-		log("GENE FROM STRING: "+string(_str))
+		//log("GENE FROM STRING: "+string(_str))
 		ds_list_clear(chromosones);
 		for (var __i=0;__i<array_length(__chromosones);__i++){
 			var __chromosone = __chromosones[__i];
 			//Make sure this is a good string;
 			if (string_count(CHROMOSONE_DELIMITER,__chromosone)>0){
-				log("	CHROM:"+string(__chromosone))
+				//log("	CHROM:"+string(__chromosone))
 				ds_list_add(chromosones,chromosoneFromString(__chromosone));
 			}
 			else {
 				//Should probably HALT AND CATCH FIRE.
-				debuglog("No Chromosone Delimiters ("+string(CHROMOSONE_DELIMITER)+") found in "+__chromosone);
+				//debuglog("No Chromosone Delimiters ("+string(CHROMOSONE_DELIMITER)+") found in "+__chromosone);
 			}
 		}
 		return self;

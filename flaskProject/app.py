@@ -5,6 +5,8 @@ from flask_cors import CORS
 from mysql import connector
 
 # configuration
+from mysql.connector import Error
+
 DEBUG = True
 
 app = Flask(__name__)
@@ -14,16 +16,70 @@ api = Api(app)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-#Connect to database
-mydb = mysql.connector.connect(
-    host='localhost',
-    user='admin',
-    password='einherjar',
-    port=3306,
-    database = 'gamedata'
-)
 
-mycursor = mydb.cursor()
+
+
+def create_server_connection(host_name, user_name, user_password):
+    connection = None
+    try:
+        connection = mysql.connector.connect(
+            host=host_name,
+            user=user_name,
+            passwd=user_password
+        )
+        print("MySQL Database connection successful")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+    return connection
+
+def create_database(connection, query):
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query)
+        print("Database created successfully")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+def create_db_connection(host_name, user_name, user_password, port_number, db_name):
+    connection = None
+    try:
+        connection = mysql.connector.connect(
+            host=host_name,
+            user=user_name,
+            password=user_password,
+            port=port_number,
+            database=db_name
+        )
+        print("MySQL Database connection successful")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+    return connection
+
+def db_connect():
+    return create_db_connection('localhost', 'admin', 'einherjar', 3306, 'gamedata')
+
+def execute_query(connection, query):
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query)
+        connection.commit()
+        print("Query successful")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+def read_query(connection, query):
+    cursor = connection.cursor()
+    result = None
+    try:
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return result
+    except Error as err:
+        print(f"Error: '{err}'")
+
+
 
 class HelloWorld(Resource):
     def get(self):
@@ -34,19 +90,24 @@ api.add_resource(HelloWorld, '/api')
 class PingAPI(Resource):
     def get(self):
         print("Returning Ping Get")
-        return "PING!"
+        return "PING API!"
 
 api.add_resource(PingAPI, '/ping')
 
 class SessionAPI(Resource):
     def get(self):
         req = request.get_json()
-        key = req.get("key")
+        key = -1
+        try:
+            key = req.get("key")
+        except Exception:
+            print(Exception)
+
+        connection = db_connect()
         if key == -1:
-            mycursor.execute('SELECT * FROM sessions')
+            sessions = read_query(connection,'SELECT * FROM sessions')
         else:
-            mycursor.execute(f'SELECT * FROM sessions WHERE sessionID={key}')
-        sessions = mycursor.fetchall()
+            sessions = read_query(connection,f'SELECT * FROM sessions WHERE sessionID={key}')
         print("Returning Sessions GET")
         return jsonify(sessions)
 
@@ -64,11 +125,8 @@ class SessionAPI(Resource):
             "endingFitness": req.get("endingFitness"),
         }
         res = make_response(jsonify(response_body),200)
-        sql = 'INSERT INTO sessions (brain,time,startingFitness,endingFitness) VALUES (%s, %s, %s, %s)'
-        val = (brain,time,startingFitness,endingFitness)
-        mycursor.execute(sql,val)
-
-        mydb.commit()
+        connection = db_connect()
+        execute_query(connection,f'INSERT INTO sessions (brain,time,startingFitness,endingFitness) VALUES ({brain}, {time}, {startingFitness}, {endingFitness})')
 
         return res
 
@@ -76,9 +134,8 @@ class SessionAPI(Resource):
         sessionID = -1
         req = request.get_json()
         sessionID = req.get("sessionID")
-        sql = f'DELETE FROM sessions WHERE sessionID={sessionID}'
-        mycursor.execute(sql)
-        mydb.commit()
+        connection = db_connect()
+        execute_query(connection,f'DELETE FROM sessions WHERE sessionID={sessionID}')
         return f"performed DELETE on {sessionID}"
 
 
@@ -87,37 +144,40 @@ api.add_resource(SessionAPI, '/sessions')
 
 class BrainAPI(Resource):
     def get(self):
-        print("Returning Brain GET")
+        print("Received Brain GET")
         req = request.get_json()
         key = req.get("key")
         if key == -1:
-            mycursor.execute('SELECT * FROM brains')
+            sessions = read_query(db_connect(),'SELECT * FROM brains')
         else:
-            mycursor.execute(f'SELECT * FROM brains WHERE brain={key}')
-        sessions = mycursor.fetchall()
-        print("Returning Sessions GET")
+            sessions = read_query(db_connect(),f'SELECT * FROM brains WHERE brain={key}')
+        print("Returning Brain GET")
         return jsonify(sessions)
 
     def post(self):
         req = request.get_json()
         brain = req.get("brain")
-        sql = f'INSERT INTO brains (brain) VALUES ({brain})'
-        mycursor.execute(sql)
-        mydb.commit()
-        return f"Added {brain}"
+        fitness = req.get("fitness")
+        response_body = {
+            "message": "Create received!",
+            "brain": req.get("brain"),
+            "fitness": req.get("fitness"),
+        }
+        res = make_response(jsonify(response_body),200)
+        execute_query(db_connect(), f'INSERT INTO brains (brain,fitness) VALUES ("{brain}", {fitness})')
+        print(res)
+        return res
 
     def delete(self):
         req = request.get_json()
         brain = req.get("brain")
-        sql = f'DELETE FROM brains WHERE brain={brain}'
-        mycursor.execute(sql)
-        mydb.commit()
-        return f"performed DELETE on {brain}"
+        execute_query(db_connect(),f'DELETE FROM brains WHERE brain={brain}')
+        return f"performed DELETE on BRAIN:{brain}"
 
     def update(self):
         req = request.get_json()
         brain = req.get("brain")
-        
+
 
         return f"performed DELETE on {brain}"
 

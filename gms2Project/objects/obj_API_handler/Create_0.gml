@@ -4,7 +4,7 @@ event_inherited();
 //https://grafxkid.itch.io/
 
 
-global.API.brains.getAll();
+//global.API.brains.getAll();
 
 dbUrl = "http://127.0.0.1:5000/";
 //var _url = "http://127.0.0.1:5000/capstone"

@@ -20,9 +20,10 @@ event_inherited();
 	// var payload = ds_map_create();
 	//ds_map_add(payload,"potato","PO-TAY-TOES");
 	//lastRequest = APISendRequest(dbUrl+"brains","GET",json_encode(payload))	 
-	global.API.brains.getAll();
+	//global.API.brains.getAll();
+	global.API.brains.read(10);
 	//lastRequest = APISendRequest(dbUrl+"brains","GET",json_stringify("potato"))	 
-	log("brains request");
+	//log("brains request");
  }
  
   if kb_p(vk_e){

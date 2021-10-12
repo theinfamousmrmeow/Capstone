@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Books from '../components/Books.vue';
 import Ping from '../components/Ping.vue';
+import Sessions from '../components/Sessions.vue';
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/ping',
     name: 'Ping',
     component: Ping,
+  },
+  {
+    path: '/sessions',
+    name: 'Sessions',
+    component: Sessions,
   },
   {
     path: '/books',

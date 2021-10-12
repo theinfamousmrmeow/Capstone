@@ -11,12 +11,20 @@ function initAPI(){
 
 		//Create references to each API available;
 		sessions: new API("http://127.0.0.1:5000/","sessions"),
-		brains: new API("http://127.0.0.1:5000/","brains"),
+		brains:	new API("http://127.0.0.1:5000/","brains"),
 
 		ping: function(){
 			log("PING ATTEMPT: ");
 			APISendRequest("http://127.0.0.1:5000/"+"ping","GET",json_stringify(""));
 		}
+		
+		//brainping: function(){
+		//	log("BRAIN PING ATTEMPT: ");
+			
+			
+		//	json_encode(_payload)
+		//	APISendRequest("http://127.0.0.1:5000/"+"brains","GET",json_stringify(""));
+		//}
 
 	}
 }
