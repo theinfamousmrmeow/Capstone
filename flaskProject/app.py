@@ -4,6 +4,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from mysql import connector
 
+
 # configuration
 from mysql.connector import Error
 
@@ -61,6 +62,7 @@ def db_connect():
     return create_db_connection('localhost', 'admin', 'einherjar', 3306, 'gamedata')
 
 def execute_query(connection, query):
+    print("Trying Query:"+query)
     cursor = connection.cursor()
     try:
         cursor.execute(query)
@@ -131,16 +133,38 @@ class SessionAPI(Resource):
         return res
 
     def delete(self):
-        sessionID = -1
+        #TODO:  Consider deleting this one, should be using Params really
+        print("DELETE REQUEST")
         req = request.get_json()
+        #request.args seems to be the query string
         sessionID = req.get("sessionID")
+        print("SESSION ID:")
         connection = db_connect()
         execute_query(connection,f'DELETE FROM sessions WHERE sessionID={sessionID}')
         return f"performed DELETE on {sessionID}"
 
+class SessionAPIParams(Resource):
 
+    def delete(self, sessionID):
+        print("DELETE REQUEST")
+        print("SESSION ID:")
+        connection = db_connect()
+        execute_query(connection,f'DELETE FROM sessions WHERE sessionID={sessionID}')
+        return f"performed DELETE on {sessionID}"
+
+    def put(self, sessionID):
+        print("PUT/UPDATE REQUEST")
+        req = request.get_json()
+        time = req.get("time")
+        brain = req.get("brain")
+        startingFitness = req.get("startingFitness")
+        endingFitness = req.get("endingFitness")
+        connection = db_connect()
+        execute_query(connection,f'UPDATE sessions SET brain = {brain},time = {time},startingFitness = {startingFitness},endingFitness = {endingFitness} WHERE sessionID={sessionID}')
+        return f"performed Update on {sessionID}"
 
 api.add_resource(SessionAPI, '/sessions')
+api.add_resource(SessionAPIParams, '/sessions/<sessionID>')
 
 class BrainAPI(Resource):
     def get(self):
