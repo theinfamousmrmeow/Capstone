@@ -170,7 +170,11 @@ class BrainAPI(Resource):
     def get(self):
         print("Received Brain GET")
         req = request.get_json()
-        key = req.get("key")
+        key = -1
+        try:
+            key = req.get("key")
+        except Exception:
+            print(Exception)
         if key == -1:
             sessions = read_query(db_connect(),'SELECT * FROM brains')
         else:
@@ -206,6 +210,27 @@ class BrainAPI(Resource):
         return f"performed DELETE on {brain}"
 
 api.add_resource(BrainAPI, '/brains')
+
+class BrainAPIParams(Resource):
+
+    def delete(self, brain):
+        print("DELETE REQUEST")
+        connection = db_connect()
+        execute_query(connection,f'DELETE FROM brains WHERE brain={brain}')
+        return f"performed DELETE on {brain}"
+
+    def put(self, sessionID):
+        print("PUT/UPDATE REQUEST")
+        req = request.get_json()
+        time = req.get("time")
+        brain = req.get("brain")
+        startingFitness = req.get("startingFitness")
+        endingFitness = req.get("endingFitness")
+        connection = db_connect()
+        execute_query(connection,f'UPDATE sessions SET brain = {brain},time = {time},startingFitness = {startingFitness},endingFitness = {endingFitness} WHERE sessionID={sessionID}')
+        return f"performed Update on {sessionID}"
+
+api.add_resource(BrainAPIParams, '/brains/<brainID>')
 
 if __name__ == '__main__':
     app.run()
