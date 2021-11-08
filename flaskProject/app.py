@@ -222,12 +222,13 @@ class BrainAPIParams(Resource):
     def put(self, sessionID):
         print("PUT/UPDATE REQUEST")
         req = request.get_json()
-        time = req.get("time")
         brain = req.get("brain")
-        startingFitness = req.get("startingFitness")
-        endingFitness = req.get("endingFitness")
+        sessions = req.get("sessions")
+        fitness = req.get("fitness")
+        fitness = req.get("fitness")
+        birthdate = req.get("birthdate")
         connection = db_connect()
-        execute_query(connection,f'UPDATE sessions SET brain = {brain},time = {time},startingFitness = {startingFitness},endingFitness = {endingFitness} WHERE sessionID={sessionID}')
+        execute_query(connection,f'UPDATE sessions SET brain = {brain},fitness = {fitness},sessions = {sessions}, birthdate = {birthdate} WHERE brain={brain}')
         return f"performed Update on {sessionID}"
 
 api.add_resource(BrainAPIParams, '/brains/<brainID>')
