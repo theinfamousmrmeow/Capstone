@@ -225,7 +225,6 @@ class BrainAPIParams(Resource):
         brain = req.get("brain")
         sessions = req.get("sessions")
         fitness = req.get("fitness")
-        fitness = req.get("fitness")
         birthdate = req.get("birthdate")
         connection = db_connect()
         execute_query(connection,f'UPDATE sessions SET brain = {brain},fitness = {fitness},sessions = {sessions}, birthdate = {birthdate} WHERE brain={brain}')

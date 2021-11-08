@@ -235,6 +235,7 @@ export default {
   },
   created() {
     this.getSessions();
+    console.log(this.books);
   },
 };
 </script>
