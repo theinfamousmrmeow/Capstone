@@ -5,7 +5,7 @@
     <h3>Capstone Dashboard</h3>
     <ul>
       <li><a href="./about" target="_blank" rel="noopener">About</a></li>
-      <li><a href="./books" target="_blank" rel="noopener">Sessions CRUD</a></li>
+      <li><a href="./sessions" target="_blank" rel="noopener">Sessions CRUD</a></li>
       <li><a href="./brains" target="_blank" rel="noopener">Brains CRUD</a></li>
     </ul>
 

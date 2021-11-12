@@ -219,16 +219,16 @@ class BrainAPIParams(Resource):
         execute_query(connection,f'DELETE FROM brains WHERE brain={brain}')
         return f"performed DELETE on {brain}"
 
-    def put(self, sessionID):
+    def put(self, brain):
         print("PUT/UPDATE REQUEST")
         req = request.get_json()
-        brain = req.get("brain")
+        #brain = req.get("brain")
         sessions = req.get("sessions")
         fitness = req.get("fitness")
         birthdate = req.get("birthdate")
         connection = db_connect()
-        execute_query(connection,f'UPDATE sessions SET brain = {brain},fitness = {fitness},sessions = {sessions}, birthdate = {birthdate} WHERE brain={brain}')
-        return f"performed Update on {sessionID}"
+        execute_query(connection,f'UPDATE brains SET fitness = {fitness},sessions = {sessions}, birthdate = {birthdate} WHERE brain={brain}')
+        return f"performed Update on {brain}"
 
 api.add_resource(BrainAPIParams, '/brains/<brainID>')
 

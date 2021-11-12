@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Books from '../components/Books.vue';
 import Ping from '../components/Ping.vue';
+import Brains from '../components/Brains.vue';
 import Sessions from '../components/Sessions.vue';
 import Chart1 from '../components/Chart1.vue';
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/books',
     name: 'Books',
     component: Books,
+  },
+  {
+    path: '/brains',
+    name: 'Brains CRUD',
+    component: Brains,
   },
   {
     path: '/about',
