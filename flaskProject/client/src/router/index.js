@@ -6,6 +6,7 @@ import Ping from '../components/Ping.vue';
 import Brains from '../components/Brains.vue';
 import Sessions from '../components/Sessions.vue';
 import Chart1 from '../components/Chart1.vue';
+import Chart2 from '../components/Chart2.vue';
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/chart1',
     name: 'Chart 1',
     component: Chart1,
+  },
+  {
+    path: '/chart2',
+    name: 'Chart 2',
+    component: Chart2,
   },
   {
     path: '/books',

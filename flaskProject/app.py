@@ -230,7 +230,7 @@ class BrainAPIParams(Resource):
         execute_query(connection,f'UPDATE brains SET fitness = {fitness},sessions = {sessions}, birthdate = {birthdate} WHERE brain={brain}')
         return f"performed Update on {brain}"
 
-api.add_resource(BrainAPIParams, '/brains/<brainID>')
+api.add_resource(BrainAPIParams, '/brains/<brain>')
 
 if __name__ == '__main__':
     app.run()

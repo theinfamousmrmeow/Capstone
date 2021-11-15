@@ -7,6 +7,10 @@
       <li><a href="./about" target="_blank" rel="noopener">About</a></li>
       <li><a href="./sessions" target="_blank" rel="noopener">Sessions CRUD</a></li>
       <li><a href="./brains" target="_blank" rel="noopener">Brains CRUD</a></li>
+      <li><a href="./chart1" target="_blank" rel="noopener">
+        Chart 1: Brain Fitness Over Time</a></li>
+      <li><a href="./chart2" target="_blank" rel="noopener">
+        Chart 2: Session Length Over Time</a></li>
     </ul>
 
   </div>

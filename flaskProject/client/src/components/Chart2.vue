@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-     <apexcharts width="800" type="scatter" :options="chartOptions" :series="series"></apexcharts>
+     <apexcharts width="800" type="line" :options="chartOptions" :series="series"></apexcharts>
     <div>
       <button @click="updateChart">Update!</button>
   </div>
@@ -19,6 +19,8 @@ export default {
   },
   data() {
     return {
+      targetTime: 60,
+      maxValue: 10,
       brains: [0],
       series: [{
         name: 'TEAM 1',
@@ -62,11 +64,16 @@ export default {
           type: 'datetime',
         },
         yaxis: {
-          max: 1000,
+          max: 100,
         },
       },
     };
   },
+
+  computed: {
+
+  },
+
   methods: {
 
     // eslint-disable-next-line no-unused-vars
@@ -74,8 +81,11 @@ export default {
       const series = [];
       // eslint-disable-next-line no-unused-vars,no-return-assign
       this.brains.forEach((element) => {
-        const x = new Date(element[2]).getTime();
-        const y = element[1];
+        const x = element[0];
+        const y = element[2];
+        if (y > this.maxValue) {
+          this.maxValue = y;
+        }
         series.push([x, y]);
       });
       return series;
@@ -96,7 +106,7 @@ export default {
       return series;
     },
     getSessions() {
-      const path = 'http://localhost:5000/brains';
+      const path = 'http://localhost:5000/sessions';
       axios.get(path)
         .then((res) => {
           // this.brains = res.data;
@@ -119,10 +129,55 @@ export default {
       // const newData = this.series[0].data.map(() => Math.floor(Math.random() * (max - min + 1)) + min)
       this.series = [
         {
-          name: 'TEAM BRAINS',
+          name: 'Session Length (MS)',
           data: this.convertBrainsToSeries(),
         },
       ];
+      this.chartOptions = {
+        chart: {
+          height: 400,
+          type: 'line',
+          zoom: {
+            type: 'xy',
+          },
+        },
+        annotations: {
+          yaxis: [{
+            y: this.targetTime * 1000,
+            borderColor: '#00E396',
+            label: {
+              borderColor: '#00E396',
+              style: {
+                color: '#fff',
+                background: '#00E396',
+              },
+              text: `Target:${this.targetTime}s`,
+            },
+          },
+          ],
+        },
+        dataLabels: {
+          enabled: true,
+        },
+        grid: {
+          xaxis: {
+            lines: {
+              show: true,
+            },
+          },
+          yaxis: {
+            lines: {
+              show: true,
+            },
+          },
+        },
+        xaxis: {
+          type: 'datetime',
+        },
+        yaxis: {
+          max: this.maxValue + 1,
+        },
+      };
     },
   },
   created() {
