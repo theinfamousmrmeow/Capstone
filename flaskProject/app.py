@@ -9,6 +9,12 @@ from mysql import connector
 from mysql.connector import Error
 
 DEBUG = True
+#TODO:  Find a better way to do this.
+#Its to get around PyCharm somehow automagically running the CLI version of Flask so you can't expose IPs.
+__name__ = '__main__'
+#Remote MYSQL Server Info
+MYSQL_PORT = 49155
+MYSQL_URL = "143.198.133.105"
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -16,8 +22,6 @@ api = Api(app)
 
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
-
-
 
 
 def create_server_connection(host_name, user_name, user_password):
@@ -59,7 +63,7 @@ def create_db_connection(host_name, user_name, user_password, port_number, db_na
     return connection
 
 def db_connect():
-    return create_db_connection('localhost', 'admin', 'einherjar', 3306, 'gamedata')
+    return create_db_connection(MYSQL_URL, 'remoteadmin', 'password', MYSQL_PORT, 'gamedata')
 
 def execute_query(connection, query):
     print("Trying Query:"+query)
@@ -206,7 +210,6 @@ class BrainAPI(Resource):
         req = request.get_json()
         brain = req.get("brain")
 
-
         return f"performed DELETE on {brain}"
 
 api.add_resource(BrainAPI, '/brains')
@@ -233,4 +236,4 @@ class BrainAPIParams(Resource):
 api.add_resource(BrainAPIParams, '/brains/<brain>')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0')

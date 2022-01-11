@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="725ca49e-3d3c-4033-af35-25305fca8604" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/flaskProject/.idea/flaskProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flaskProject/.idea/flaskProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskProject/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flaskProject/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskProject/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskProject/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gms2Project/objects/obj_API_handler/Create_0.gml" beforeDir="false" afterPath="$PROJECT_DIR$/gms2Project/objects/obj_API_handler/Create_0.gml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gms2Project/options/android/options_android.yy" beforeDir="false" afterPath="$PROJECT_DIR$/gms2Project/options/android/options_android.yy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gms2Project/scripts/initGame/initGame.gml" beforeDir="false" afterPath="$PROJECT_DIR$/gms2Project/scripts/initGame/initGame.gml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gms2Project/wgu_capstone.yyp" beforeDir="false" afterPath="$PROJECT_DIR$/gms2Project/wgu_capstone.yyp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="239hrqWi7vzH5mXGL97ykIpaG0P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Capstone" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flaskProject" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flaskProject/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="725ca49e-3d3c-4033-af35-25305fca8604" name="Changes" comment="" />
+      <created>1641152412910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641152412910</updated>
+    </task>
+    <servers />
+  </component>
+</project>

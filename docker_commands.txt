@@ -1,0 +1,1 @@
+docker run theinfamousmrmeow/capstone_mysql -p 3306:3306/tcp

@@ -10,12 +10,12 @@ function initAPI(){
 	global.API = {
 
 		//Create references to each API available;
-		sessions: new API("http://127.0.0.1:5000/","sessions"),
-		brains:	new API("http://127.0.0.1:5000/","brains"),
+		sessions: new API(API_URL,"sessions"),
+		brains:	new API(API_URL,"brains"),
 
 		ping: function(){
 			log("PING ATTEMPT: ");
-			APISendRequest("http://127.0.0.1:5000/"+"ping","GET",json_stringify(""));
+			APISendRequest(API_URL+"ping","GET",json_stringify(""));
 		}
 		
 		//brainping: function(){
@@ -23,7 +23,7 @@ function initAPI(){
 			
 			
 		//	json_encode(_payload)
-		//	APISendRequest("http://127.0.0.1:5000/"+"brains","GET",json_stringify(""));
+		//	APISendRequest(API_URL+"brains","GET",json_stringify(""));
 		//}
 
 	}

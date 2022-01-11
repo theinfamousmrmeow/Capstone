@@ -110,6 +110,8 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
+const WEBAPP_ADDRESS = 'http://localhost:49155';
+
 export default {
   data() {
     return {
@@ -131,7 +133,7 @@ export default {
   },
   methods: {
     getSessions() {
-      const path = 'http://localhost:5000/sessions';
+      const path = `${WEBAPP_ADDRESS}/sessions`;;
       axios.get(path)
         .then((res) => {
           this.books = res.data;
@@ -142,7 +144,7 @@ export default {
         });
     },
     addBook(payload) {
-      const path = 'http://localhost:5000/sessions';
+      const path = `${WEBAPP_ADDRESS}/sessions`;
       axios.post(path, payload)
         .then(() => {
           this.getSessions();
@@ -156,7 +158,7 @@ export default {
         });
     },
     updateBook(sessionID, payload) {
-      const path = `http://localhost:5000/sessions/${sessionID}`;
+      const path = `${WEBAPP_ADDRESS}/sessions/${sessionID}`;
       axios.put(path, payload)
         .then(() => {
           this.getSessions();
@@ -203,7 +205,7 @@ export default {
     },
     removeBook(book) {
       const sessionID = book[0];
-      const path = `http://localhost:5000/sessions/${sessionID}`;
+      const path = `${WEBAPP_ADDRESS}/sessions/${sessionID}`;
       axios.delete(path)
         .then(() => {
           this.getSessions();
@@ -212,7 +214,7 @@ export default {
         })
         .catch((error) => {
           // eslint-disable-next-line
-      console.error("ERR "+error);
+      console.error('ERR '+error);
           this.getSessions();
         });
     },

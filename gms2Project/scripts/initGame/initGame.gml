@@ -3,6 +3,8 @@
 
 #macro DEBUG false
 #macro DEV:DEBUG true
+//#macro API_URL API_URL
+#macro API_URL "http://127.0.0.1:49156/"
 
 enum E_FACTIONS{
 	NONE,

@@ -108,6 +108,8 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
+const WEBAPP_ADDRESS = 'http://localhost:49155';
+
 export default {
   data() {
     return {
@@ -129,7 +131,7 @@ export default {
   },
   methods: {
     getBrains() {
-      const path = 'http://localhost:5000/brains';
+      const path = `${WEBAPP_ADDRESS}/brains`;
       axios.get(path)
         .then((res) => {
           this.brains = res.data;
@@ -140,7 +142,7 @@ export default {
         });
     },
     addBook(payload) {
-      const path = 'http://localhost:5000/brains';
+      const path = `${WEBAPP_ADDRESS}/brains/`;
       axios.post(path, payload)
         .then(() => {
           this.getBrains();
@@ -154,7 +156,7 @@ export default {
         });
     },
     updateBook(sessionID, payload) {
-      const path = `http://localhost:5000/brains/${sessionID}`;
+      const path = `${WEBAPP_ADDRESS}/brains/${sessionID}`;
       axios.put(path, payload)
         .then(() => {
           this.getBrains();
@@ -201,7 +203,7 @@ export default {
     },
     removeBook(book) {
       const sessionID = book[0];
-      const path = `http://localhost:5000/brains/${sessionID}`;
+      const path = `${WEBAPP_ADDRESS}/brains/${sessionID}`;
       axios.delete(path)
         .then(() => {
           this.getBrains();
@@ -210,7 +212,7 @@ export default {
         })
         .catch((error) => {
           // eslint-disable-next-line
-      console.error("ERR "+error);
+      console.error('ERR '+error);
           this.getBrains();
         });
     },

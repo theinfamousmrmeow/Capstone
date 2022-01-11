@@ -6,7 +6,7 @@ event_inherited();
 
 //global.API.brains.getAll();
 
-dbUrl = "http://127.0.0.1:5000/";
+dbUrl = API_URL
 //var _url = "http://127.0.0.1:5000/capstone"
 //lastRequest = APISendRequest(_url,"GET",json_stringify("potato"))
 //post = -1;
