@@ -108,7 +108,7 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-const WEBAPP_ADDRESS = 'http://localhost:49155';
+const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
 
 export default {
   data() {

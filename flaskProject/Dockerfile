@@ -45,6 +45,12 @@ RUN pip install Flask==1.1.2 Flask-Cors==3.0.10
 COPY start_backend.sh start_backend.sh
 COPY start_frontend.sh start_frontend.sh
 COPY wrapperscript.sh wrapperscript.sh
+
+RUN chmod 777 ./wrapperscript.sh
+RUN chmod 777 ./start_frontend.sh
+RUN chmod 777 ./start_backend.sh
+RUN chmod -R 777 client
+
 CMD ./wrapperscript.sh
 
 #RUN python3 app.py
