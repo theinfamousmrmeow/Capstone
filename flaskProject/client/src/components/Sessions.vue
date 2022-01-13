@@ -110,7 +110,9 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
+// const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
+
+const WEBAPP_ADDRESS = 'http://localhost:5000';
 
 export default {
   data() {
@@ -150,6 +152,7 @@ export default {
           this.getSessions();
           this.message = 'Session added!';
           this.showMessage = true;
+          console.log('Added new session!');
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -191,7 +194,7 @@ export default {
         endingFitness: this.addSessionForm.endingFitness,
         read, // property shorthand
       };
-      if (this.addSessionForm.formIsUpdateMode >= 0) {
+      if (this.addSessionForm.formIsUpdateMode !== false) {
         this.updateBook(this.addSessionForm.formIsUpdateMode, payload);
       } else {
         this.addBook(payload);

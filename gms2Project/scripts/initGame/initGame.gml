@@ -4,7 +4,10 @@
 #macro DEBUG false
 #macro DEV:DEBUG true
 //#macro API_URL API_URL
-#macro API_URL "http://127.0.0.1:49156/"
+//LOCAL TEST
+#macro DEV:API_URL "http://127.0.0.1:49156/"
+//DEPLOYMENT
+#macro RELEASE:API_URL "http://159.223.181.151:49155/"
 
 enum E_FACTIONS{
 	NONE,

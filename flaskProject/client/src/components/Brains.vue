@@ -189,7 +189,7 @@ export default {
         endingFitness: this.addSessionForm.endingFitness,
         read, // property shorthand
       };
-      if (this.addSessionForm.formIsUpdateMode >= 0) {
+      if (this.addSessionForm.formIsUpdateMode !== false) {
         this.updateBook(this.addSessionForm.formIsUpdateMode, payload);
       } else {
         this.addBook(payload);
