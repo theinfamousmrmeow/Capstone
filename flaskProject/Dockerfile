@@ -52,6 +52,7 @@ RUN chmod 777 ./wrapperscript.sh
 RUN chmod 777 ./start_frontend.sh
 RUN chmod 777 ./start_backend.sh
 RUN chmod -R 777 client
+#RUN chmod -R 777 Scripts
 
 CMD ./wrapperscript.sh
 
