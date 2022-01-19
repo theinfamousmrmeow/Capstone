@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to the GameWorx Dashboard"/>
+    <HelloWorld msg="Welcome to the 'Attack Of the Ai-nimals' Dashboard"/>
   </div>
 </template>
 

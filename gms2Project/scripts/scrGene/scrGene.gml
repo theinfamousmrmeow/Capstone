@@ -275,11 +275,6 @@ function Gene(_str=-1) constructor {
 
 		fitness =  max(0,1000 - (0.3*(power(__targetTime-__time,2))));
 		return fitness;
-		//show("__time:"+string(__time)+"\n __targetTime:"+string(__targetTime)+"\n"+
-		//+string(__targetTime-__time)+"\n"
-		//+string(power(__targetTime-__time,2))+"\n"
-		//+string(fitness))
-		//fitness = 1;
 	}
 	
 	function mutate(_instability){

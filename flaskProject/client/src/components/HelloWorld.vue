@@ -11,6 +11,8 @@
         Chart 1: Brain Fitness Over Time</a></li>
       <li><a href="./chart2" target="_blank" rel="noopener">
         Chart 2: Session Length Over Time</a></li>
+      <li><a href="./chart3" target="_blank" rel="noopener">
+        Chart 3: Fitness over last 1000 Sessions</a></li>
     </ul>
 
   </div>

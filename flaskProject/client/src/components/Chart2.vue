@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-     <apexcharts width="800" type="line" :options="chartOptions" :series="series"></apexcharts>
+     <apexcharts width="800" type='line' :options="chartOptions" :series="series"></apexcharts>
     <div>
       <button @click="updateChart">Update!</button>
   </div>
@@ -12,8 +12,10 @@
 import VueApexCharts from 'vue-apexcharts';
 import axios from 'axios';
 
+const WEBAPP_ADDRESS = process.env.VUE_APP_WEBAPP_IP;
+
 export default {
-  name: 'Chart',
+  name: 'Chart2',
   components: {
     apexcharts: VueApexCharts,
   },
@@ -106,7 +108,7 @@ export default {
       return series;
     },
     getSessions() {
-      const path = 'http://localhost:5000/sessions';
+      const path = `${WEBAPP_ADDRESS}/sessions`;
       axios.get(path)
         .then((res) => {
           // this.brains = res.data;
@@ -134,6 +136,9 @@ export default {
         },
       ];
       this.chartOptions = {
+        title: {
+          text: 'Session Length Over Time',
+        },
         chart: {
           height: 400,
           type: 'line',
@@ -157,7 +162,7 @@ export default {
           ],
         },
         dataLabels: {
-          enabled: true,
+          enabled: false,
         },
         grid: {
           xaxis: {
@@ -178,6 +183,10 @@ export default {
           max: this.maxValue + 1,
         },
       };
+      // TODO: Find a prettier way to do this.
+      const cloneSeries = [];
+      Object.assign(cloneSeries, this.series);
+      this.series = cloneSeries;
     },
   },
   created() {

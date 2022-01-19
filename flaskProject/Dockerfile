@@ -3,9 +3,12 @@ FROM python:3.9 AS capstone_webapp
 EXPOSE 5000
 EXPOSE 8080
 
-ENV MYSQL_IP=admin
+ENV MYSQL_IP='143.198.133.105'
+ENV MYSQL_PORT='49155'
 ENV MYSQL_UN="remoteadmin"
 ENV MYSQL_PW="password"
+
+ENV VUE_APP_WEBAPP_IP='http://localhost:49155'
 
 RUN mkdir webapp
 RUN cd webapp
@@ -17,7 +20,6 @@ RUN pip install --upgrade pip
 RUN apt-get -y install software-properties-common
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash
 RUN apt-get -y install nodejs
-
 
 ADD requirements.txt .
 

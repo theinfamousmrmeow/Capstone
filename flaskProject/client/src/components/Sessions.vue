@@ -110,9 +110,9 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-// const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
-
-const WEBAPP_ADDRESS = 'http://localhost:5000';
+//  const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
+//  const WEBAPP_ADDRESS = 'http://localhost:5000';
+const WEBAPP_ADDRESS = process.env.VUE_APP_WEBAPP_IP;
 
 export default {
   data() {
@@ -145,7 +145,7 @@ export default {
           console.error(error);
         });
     },
-    addBook(payload) {
+    addSession(payload) {
       const path = `${WEBAPP_ADDRESS}/sessions`;
       axios.post(path, payload)
         .then(() => {
@@ -197,7 +197,7 @@ export default {
       if (this.addSessionForm.formIsUpdateMode !== false) {
         this.updateBook(this.addSessionForm.formIsUpdateMode, payload);
       } else {
-        this.addBook(payload);
+        this.addSession(payload);
       }
       this.initForm();
     },

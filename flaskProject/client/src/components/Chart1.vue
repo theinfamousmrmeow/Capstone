@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-     <apexcharts width="800" type="scatter" :options="chartOptions" :series="series"></apexcharts>
+     <apexcharts width="800" type="line" :options="chartOptions" :series="series"></apexcharts>
     <div>
       <button @click="updateChart">Update!</button>
   </div>
@@ -11,6 +11,8 @@
 <script>
 import VueApexCharts from 'vue-apexcharts';
 import axios from 'axios';
+
+const WEBAPP_ADDRESS = process.env.VUE_APP_WEBAPP_IP;
 
 export default {
   name: 'Chart',
@@ -36,9 +38,14 @@ export default {
       },
       ],
       chartOptions: {
+
+        title: {
+          text: 'Generated Brain Fitness Over Time',
+        },
+
         chart: {
           height: 400,
-          type: 'scatter',
+          type: 'line',
           zoom: {
             type: 'xy',
           },
@@ -96,7 +103,7 @@ export default {
       return series;
     },
     getSessions() {
-      const path = 'http://localhost:5000/brains';
+      const path = `${WEBAPP_ADDRESS}/brains`;
       axios.get(path)
         .then((res) => {
           // this.brains = res.data;
@@ -123,6 +130,10 @@ export default {
           data: this.convertBrainsToSeries(),
         },
       ];
+      // TODO: Find a prettier way to do this.
+      const cloneSeries = [];
+      Object.assign(cloneSeries, this.series);
+      this.series = cloneSeries;
     },
   },
   created() {

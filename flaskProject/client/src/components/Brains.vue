@@ -34,11 +34,11 @@
                   <button type="button"
                           class="btn btn-warning btn-sm"
                           v-b-modal.book-modal
-                          @click="onUpdateBook(book)">Update</button>
+                          @click="onUpdateBrain(book)">Update</button>
                   <button
                     type="button"
                     class="btn btn-danger btn-sm"
-                    @click="onDeleteBook(book)">
+                    @click="onDeleteBrain(book)">
                     Delete
                   </button>
                 </div>
@@ -108,7 +108,8 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
+const WEBAPP_ADDRESS = process.env.VUE_APP_WEBAPP_IP;
+// const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
 
 export default {
   data() {
@@ -141,7 +142,7 @@ export default {
           console.error(error);
         });
     },
-    addBook(payload) {
+    addBrain(payload) {
       const path = `${WEBAPP_ADDRESS}/brains/`;
       axios.post(path, payload)
         .then(() => {
@@ -155,7 +156,7 @@ export default {
           this.getBrains();
         });
     },
-    updateBook(sessionID, payload) {
+    updateBrain(sessionID, payload) {
       const path = `${WEBAPP_ADDRESS}/brains/${sessionID}`;
       axios.put(path, payload)
         .then(() => {
@@ -190,9 +191,9 @@ export default {
         read, // property shorthand
       };
       if (this.addSessionForm.formIsUpdateMode !== false) {
-        this.updateBook(this.addSessionForm.formIsUpdateMode, payload);
+        this.updateBrain(this.addSessionForm.formIsUpdateMode, payload);
       } else {
-        this.addBook(payload);
+        this.addBrain(payload);
       }
       this.initForm();
     },
@@ -201,7 +202,7 @@ export default {
       this.$refs.addBookModal.hide();
       this.initForm();
     },
-    removeBook(book) {
+    removeBrain(book) {
       const sessionID = book[0];
       const path = `${WEBAPP_ADDRESS}/brains/${sessionID}`;
       axios.delete(path)
@@ -216,10 +217,10 @@ export default {
           this.getBrains();
         });
     },
-    onDeleteBook(book) {
-      this.removeBook(book);
+    onDeleteBrain(book) {
+      this.removeBrain(book);
     },
-    onUpdateBook(book) {
+    onUpdateBrain(book) {
       // eslint-disable-next-line prefer-destructuring
       this.addSessionForm.formIsUpdateMode = book[0];
       // eslint-disable-next-line prefer-destructuring
@@ -230,7 +231,7 @@ export default {
       this.addSessionForm.startingFitness = book[3];
       // eslint-disable-next-line prefer-destructuring
       this.addSessionForm.endingFitness = book[4];
-      this.updateBook(book);
+      this.updateBrain(book);
     },
   },
   created() {

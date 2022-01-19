@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 from flask import Flask, jsonify, request, make_response
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
@@ -13,9 +14,11 @@ DEBUG = True
 #Its to get around PyCharm somehow automagically running the CLI version of Flask so you can't expose IPs.
 __name__ = '__main__'
 #Remote MYSQL Server Info
-MYSQL_PORT = 49155
-MYSQL_URL = "143.198.133.105"
-
+MYSQL_URL = os.environ['MYSQL_IP']
+MYSQL_PORT = os.environ['MYSQL_PORT']
+MYSQL_UN = os.environ['MYSQL_UN']
+MYSQL_PW = os.environ['MYSQL_PW']
+print('MYSQL_URL:',MYSQL_URL,':',MYSQL_PORT)
 app = Flask(__name__)
 app.config.from_object(__name__)
 api = Api(app)
@@ -63,7 +66,7 @@ def create_db_connection(host_name, user_name, user_password, port_number, db_na
     return connection
 
 def db_connect():
-    return create_db_connection(MYSQL_URL, 'remoteadmin', 'password', MYSQL_PORT, 'gamedata')
+    return create_db_connection(MYSQL_URL, MYSQL_UN, MYSQL_PW, MYSQL_PORT, 'gamedata')
 
 def execute_query(connection, query):
     print("Trying Query:"+query)

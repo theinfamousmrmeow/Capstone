@@ -7,6 +7,7 @@ import Brains from '../components/Brains.vue';
 import Sessions from '../components/Sessions.vue';
 import Chart1 from '../components/Chart1.vue';
 import Chart2 from '../components/Chart2.vue';
+import Chart3 from '../components/Chart3.vue';
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/chart2',
     name: 'Chart 2',
     component: Chart2,
+  },
+  {
+    path: '/chart3',
+    name: 'Chart 3',
+    component: Chart3,
   },
   {
     path: '/books',
