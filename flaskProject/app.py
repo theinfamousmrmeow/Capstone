@@ -1,4 +1,4 @@
-from mysql import connector
+import mysql.connector
 import os
 from flask import Flask, jsonify, request, make_response
 from flask_restful import Resource, Api, reqparse
