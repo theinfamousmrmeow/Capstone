@@ -110,9 +110,10 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-//  const WEBAPP_ADDRESS = 'http://159.223.181.151:49155';
 //  const WEBAPP_ADDRESS = 'http://localhost:5000';
 const WEBAPP_ADDRESS = process.env.VUE_APP_WEBAPP_IP;
+
+console.error(WEBAPP_ADDRESS);
 
 export default {
   data() {

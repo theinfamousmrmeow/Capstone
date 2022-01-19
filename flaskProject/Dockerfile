@@ -8,7 +8,7 @@ ENV MYSQL_PORT='49155'
 ENV MYSQL_UN="remoteadmin"
 ENV MYSQL_PW="password"
 
-ENV VUE_APP_WEBAPP_IP='http://localhost:49155'
+#ENV VUE_APP_WEBAPP_IP='http://localhost:49155'
 
 RUN mkdir webapp
 RUN cd webapp
