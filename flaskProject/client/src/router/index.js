@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import Books from '../components/Books.vue';
 import Ping from '../components/Ping.vue';
 import Brains from '../components/Brains.vue';
 import Sessions from '../components/Sessions.vue';
@@ -41,11 +40,6 @@ const routes = [
     path: '/chart3',
     name: 'Chart 3',
     component: Chart3,
-  },
-  {
-    path: '/books',
-    name: 'Books',
-    component: Books,
   },
   {
     path: '/brains',

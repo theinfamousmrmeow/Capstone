@@ -1,11 +1,3 @@
-///@desc
-///@param
-function scrGene(){
-
-}
-
-
-
 #macro CHROMOSONE_DELIMITER ","
 
 #macro GENE_DELIMITER ";"
@@ -19,6 +11,7 @@ function scrGene(){
 #macro POPULATION_SIZE 10
 #macro MUTANTS_PER_GENERATION 3
 #macro MUTATIONS_PER_MUTANT 2
+#macro REPLACEMENT_COUNT 1
 // 1 = more stable, 100 = less stable
 #macro GENETIC_INSTABILITY 10
 
@@ -32,7 +25,6 @@ function getMonsterCode(_objectIndex){
 	return array_get(ENEMY_OBJECTS,__index);
 }
 
-
 function chromosoneFromString(_string){
 	//debuglog("CHROMSPLIT:"+_string);
 	var __strings = splitString(_string,CHROMOSONE_DELIMITER);
@@ -44,8 +36,6 @@ function chromosoneFromString(_string){
 	
 	return __chr;
 }
-
-
 
 function Population(__size=POPULATION_SIZE) constructor{
 	
@@ -118,7 +108,6 @@ function Population(__size=POPULATION_SIZE) constructor{
 			//We have evaluated all genes for fitness.
 			//We must now cull, crossbreed, and mutate.
 			
-			#macro REPLACEMENT_COUNT 1
 			
 			repeat(REPLACEMENT_COUNT){
 				naturalSelection();
@@ -210,8 +199,6 @@ function Chromosone(_typeString=string(irandom(array_length(ENEMY_CODES)-1)),_pl
 }
 
 function Gene(_str=-1) constructor {
-
-	
 	function toString(){
 		var __str= "";
 		for (var __i=0;__i<ds_list_size(chromosones);__i++){
@@ -219,10 +206,8 @@ function Gene(_str=-1) constructor {
 		}
 		return __str;
 	}
-	
 	function fromString(_str){
 		var __chromosones = splitString(_str,GENE_DELIMITER);
-		//log("GENE FROM STRING: "+string(_str))
 		ds_list_clear(chromosones);
 		for (var __i=0;__i<array_length(__chromosones);__i++){
 			var __chromosone = __chromosones[__i];
@@ -233,17 +218,14 @@ function Gene(_str=-1) constructor {
 			}
 			else {
 				//Should probably HALT AND CATCH FIRE.
-				//debuglog("No Chromosone Delimiters ("+string(CHROMOSONE_DELIMITER)+") found in "+__chromosone);
 			}
 		}
 		return self;
 	}
-	
 	function clear(){
 		//Just delete all chromosones
 		ds_list_clear(chromosones);
 	}
-	
 	function crossbreed(_otherGene){
 		var __child = -1;
 		var __size = ds_list_size(chromosones);
@@ -253,15 +235,8 @@ function Gene(_str=-1) constructor {
 		__child.clear();
 		
 		for (var __chr=0;__chr<__size;__chr++){
-			
-			//Get Ternaried, n00b
 			var __chromosone = __chr<__changePoint? chromosones[| __chr] : _otherGene.chromosones[| __chr];
-			//log("ALL CHROMOSONES:");
-			//log(chromosones);
-			//log("CHROM :"+string(__chr)+":");
-			//log(__chromosone);
 			ds_list_add(__child.chromosones,__chromosone);
-			//array_push(__child.chromosones,__chromosone);
 		}
 		
 		return __child;
