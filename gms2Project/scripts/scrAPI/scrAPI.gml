@@ -17,14 +17,6 @@ function initAPI(){
 			log("PING ATTEMPT: ");
 			APISendRequest(API_URL+"ping","GET",json_stringify(""));
 		}
-		
-		//brainping: function(){
-		//	log("BRAIN PING ATTEMPT: ");
-			
-			
-		//	json_encode(_payload)
-		//	APISendRequest(API_URL+"brains","GET",json_stringify(""));
-		//}
 
 	}
 }

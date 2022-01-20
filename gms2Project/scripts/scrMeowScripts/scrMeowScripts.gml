@@ -54,6 +54,7 @@
 
 #region TIME CONSTANTS
 #macro SECONDS_TO_MILLISECONDS 1000
+#macro MINUTES_TO_MILLISECONDS 60000
 #endregion
 
 #region sprites

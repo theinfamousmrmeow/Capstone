@@ -1,4 +1,7 @@
 {
+  "ConfigValues": {
+    "DEV": {"option_android_version":"0.1.4",},
+  },
   "option_android_sync_amazon": false,
   "option_android_display_name": "Attack of the AInimals",
   "option_android_version": "0.1.2",
